@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Review Summarizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Review Summarizer</h1>
+    <textarea id="reviewInput" placeholder="Paste your reviews here..."></textarea>
+    <button onclick="summarize()">Summarize</button>
+    <h2>Summary:</h2>
+    <div id="output"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
