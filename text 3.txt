@@ -1,0 +1,29 @@
+function summarize() {
+  const text = document.getElementById("reviewInput").value;
+  if (!text.trim()) {
+    document.getElementById("output").innerText = "Please paste some reviews first.";
+    return;
+  }
+
+  // Very basic summarizer: finds the most common phrases
+  const sentences = text.split(/[.?!]/).filter(s => s.trim().length > 20);
+  const wordCounts = {};
+
+  for (let sentence of sentences) {
+    for (let word of sentence.toLowerCase().split(/\s+/)) {
+      if (word.length > 3) {
+        wordCounts[word] = (wordCounts[word] || 0) + 1;
+      }
+    }
+  }
+
+  const sortedWords = Object.entries(wordCounts).sort((a, b) => b[1] - a[1]);
+  const topWords = sortedWords.slice(0, 5).map(([word]) => word);
+
+  const keySentences = sentences.filter(sentence =>
+    topWords.some(word => sentence.toLowerCase().includes(word))
+  );
+
+  const summary = keySentences.slice(0, 3).join(". ") + ".";
+  document.getElementById("output").innerText = summary;
+}
